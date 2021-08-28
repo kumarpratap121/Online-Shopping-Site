@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Results{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h3 class="my-4 border-bottom pb-1"><span class="text-muted">Search result for</span> {{request.GET.q}}</h3>
+     <div class="row">
+      {% for product in data %}
+          <div class="col-sm-4 text-center mb-4">
+            <a href="{% url 'product-detail' product.id %}" class="btn">
+               <div class="item">
+               <img src="{{product.product_image.url}}" alt=" "  height="100" class="">
+               <div class="fw-bold">{{product.title}}</div>
+               <div class="fw-bold">Rs. {{product.discounted_price}}
+               <small class="fw-light text-decoration-line-through"> Rs. {{product.selling_price}}</small></div>
+              </div>
+            </a>
+          </div>
+      {% endfor %}
+     </div>
+</div>
+{% endblock main-content %}
